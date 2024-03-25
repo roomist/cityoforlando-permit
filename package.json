@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "DBPermits.js", -> NAME OF JS YOU RUN... IE THE BACKEND DB FILE (DELETE THIS NOTE)
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon DBPermits.js" -> QOL guy so you dont have to constantly kill terminal.. itll rerun the server after a code change // https://www.youtube.com/watch?v=fPuLnzSjPLE // MINUTE 6:14 at that youtube link for installing all of this stuff.
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.1.0"
+  }
+}
