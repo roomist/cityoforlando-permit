@@ -1,10 +1,14 @@
 Aight so basically...
 
-In the SRC of the main repo you can add a new directory and call it "backend".
+In the SRC of the main repo you can add a new directory and call it "backend". NAVIGATE TO THIS DIRECTORY IN THE TERMINAL BEFORE DOING THE FOLLOWING COMMANDS (SEE BELOW)
 
-Throw these three files into it.  Theres some basic installs you have to do.. 
+Throw these three files into it.  Theres some basic installs you have to do.. ALSO THIS ASSUMES YOU ALREADY HAVE MYSQL ON YOUR PC
 
 https://www.youtube.com/watch?v=fPuLnzSjPLE
+(im sorry i shouldve copied the installs here....)
+(LOOK HERE i decided to look back in the vid and put them here...)
+1. npm init -y
+2. npm i express mysql nodemon
 
 You can follow like the first 10m of this youtube video for all the installs.. i already wrote all the code you need following this dude so dw about that part
 Just dump this code into that directory and do the installs and you can read the notes i left in the files on more info on how to configure everything and see the changes working.  
@@ -17,8 +21,10 @@ BUTTTT it works... i do have a 404 issue though but its like 1 am so yall can fi
 
 PLEASE LOOK AT THE BASH INSTALL TXT FILE you WILL need to install all of those for this to work.
 
-also im sure you all know how to initiate a react app... you will need to create a directory called client IN THE SRC directory...
-then initiate the react app in that client directory. ALL OF THE FILES I ADDED HAVE INSTRUCTIONS IN THE COMMIT MESSAGE. If you follow those and put all the files in the right spot 
+also im sure you all know how to initiate a react app... !!IMPORTANT!! you will need to create a directory called client IN THE SRC directory !!IMPORTANT!!
+then initiate the react app in that client directory. //TO INIT -> "npx create-react-app . " (YES WITH THE DOT)
+
+ALL OF THE FILES I ADDED HAVE INSTRUCTIONS IN THE COMMIT MESSAGE. If you follow those and put all the files in the right spot 
 everything should work and you guys can have a field day improving it all.  FYI THE FILE PATH SHOULD LOOK LIKE
 
 -SRC
