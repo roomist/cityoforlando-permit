@@ -3,11 +3,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Permits from './pages/Permits';
 import Add from './pages/add';
 import Update from './pages/update';
-import { CssBaseline, Box, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { useAuth0 } from "@auth0/auth0-react";
+import { CssBaseline, Box, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemText, Divider, Avatar, ListItemAvatar, Button } from '@mui/material';
 
 const drawerWidth = 240;
 
 const App = () => {
+    const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
@@ -29,6 +32,28 @@ const App = () => {
                 <Toolbar />
                 <Box sx={{ overflow: 'auto' }}>
                     <List>
+                        {isAuthenticated && user ? (
+                            <>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar src={user.picture} />
+                                    </ListItemAvatar>
+                                    <ListItemText primary={user.name} secondary={user.email} />
+                                </ListItem>
+                                <ListItem>
+                                    <Button fullWidth variant="contained" color="primary" onClick={() => logout({ returnTo: window.location.origin })}>
+                                        Log Out
+                                    </Button>
+                                </ListItem>
+                            </>
+                        ) : (
+                            <ListItem>
+                                <Button fullWidth variant="contained" color="primary" onClick={() => loginWithRedirect()}>
+                                    Log In
+                                </Button>
+                            </ListItem>
+                        )}
+                        <Divider />
                         <ListItem button component="a" href="/">
                             <ListItemText primary="Permits" />
                         </ListItem>
