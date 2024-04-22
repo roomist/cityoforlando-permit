@@ -39,7 +39,6 @@ const Permits = () => {
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Permit ID</TableCell>
                             <TableCell>Permit Name</TableCell>
                             <TableCell>Submitter Name</TableCell>
                             <TableCell>Submitted Date</TableCell>
@@ -51,7 +50,6 @@ const Permits = () => {
                     <TableBody>
                         {permits.map((permit) => (
                             <TableRow key={permit.permitId}>
-                                <TableCell>{permit.permitId}</TableCell>
                                 <TableCell>{permit.permitName}</TableCell>
                                 <TableCell>{permit.submitterName}</TableCell>
                                 <TableCell>{permit.submittedDate}</TableCell>
