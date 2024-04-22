@@ -4,7 +4,7 @@ import Permits from './pages/Permits';
 import Add from './pages/add';
 import Update from './pages/update';
 import { useAuth0 } from "@auth0/auth0-react";
-import { CssBaseline, Box, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemText, Divider, Avatar, ListItemAvatar, Button } from '@mui/material';
+import { CssBaseline, Box, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemText, Divider, Avatar, ListItemAvatar, Button, Tooltip } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -38,7 +38,10 @@ const App = () => {
                                     <ListItemAvatar>
                                         <Avatar src={user.picture} />
                                     </ListItemAvatar>
-                                    <ListItemText primary={user.name} secondary={user.email} />
+                                    <Tooltip title={`${user.name} (${user.email})`} placement="right">
+                                        <ListItemText primary={<Typography noWrap>{user.name}</Typography>}
+                                                      secondary={<Typography noWrap>{user.email}</Typography>} />
+                                    </Tooltip>
                                 </ListItem>
                                 <ListItem>
                                     <Button fullWidth variant="contained" color="primary" onClick={() => logout({ returnTo: window.location.origin })}>
@@ -56,9 +59,6 @@ const App = () => {
                         <Divider />
                         <ListItem button component="a" href="/">
                             <ListItemText primary="Permits" />
-                        </ListItem>
-                        <ListItem button component="a" href="/add">
-                            <ListItemText primary="Add Permit" />
                         </ListItem>
                     </List>
                 </Box>

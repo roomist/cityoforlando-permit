@@ -1,18 +1,34 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Container, Typography, Box } from '@mui/material';
+import { TextField, Button, Container, Typography, Box, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Add = () => {
+    const { isAuthenticated } = useAuth0();
+    const navigate = useNavigate();
+
+    const formatDate = (date) => {
+        let d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    };
+
     const [permit, setPermit] = useState({
         permitName: '',
         endDate: '',
         submitterName: '',
-        status: '',
-        submittedDate: '2024-03-31'
+        status: 'active', // Default status as active
+        submittedDate: formatDate(new Date()) // Set to current date
     });
-
-    const navigate = useNavigate();
 
     const handleChange = (event) => {
         setPermit((prev) => ({
@@ -32,6 +48,11 @@ const Add = () => {
         }
     };
 
+    if (!isAuthenticated) {
+        navigate('/'); // Redirect to home if not authenticated
+        return null;
+    }
+
     return (
         <Container maxWidth="sm">
             <Typography variant="h3" gutterBottom>
@@ -46,10 +67,25 @@ const Add = () => {
                 margin="normal"
             />
             <TextField
-                label="End date"
-                placeholder="End date"
+                label="End Date"
+                type="date"
                 onChange={handleChange}
                 name="endDate"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                fullWidth
+                margin="normal"
+            />
+            <TextField
+                label="Submitted Date"
+                type="date"
+                onChange={handleChange}
+                name="submittedDate"
+                value={permit.submittedDate}
+                InputLabelProps={{
+                    shrink: true,
+                }}
                 fullWidth
                 margin="normal"
             />
@@ -61,14 +97,18 @@ const Add = () => {
                 fullWidth
                 margin="normal"
             />
-            <TextField
-                label="Status"
-                placeholder="Status"
-                onChange={handleChange}
-                name="status"
-                fullWidth
-                margin="normal"
-            />
+            <FormControl fullWidth margin="normal">
+                <InputLabel>Status</InputLabel>
+                <Select
+                    name="status"
+                    value={permit.status}
+                    label="Status"
+                    onChange={handleChange}
+                >
+                    <MenuItem value="active">Active</MenuItem>
+                    <MenuItem value="inactive">Inactive</MenuItem>
+                </Select>
+            </FormControl>
             <Box display="flex" justifyContent="center">
                 <Button variant="contained" size="large" onClick={handleClick}>
                     Add
